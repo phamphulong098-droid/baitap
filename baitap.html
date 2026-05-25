@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đề Thi Trắc Nghiệm Tương Tác</title>
+    <!-- MathJax for formula rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; background: #f4f7f6; }
+        .question { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .options button { display: block; width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; cursor: pointer; text-align: left; background: #fff; }
+        .correct { background-color: #d4edda !important; border-color: #c3e6cb !important; }
+        .wrong { background-color: #f8d7da !important; border-color: #f5c6cb !important; }
+        .explanation { margin-top: 10px; padding: 10px; background: #e2e3e5; border-radius: 4px; display: none; }
+        .tip { color: #007bff; font-weight: bold; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+<h1>Đề Thi Trắc Nghiệm Tương Tác</h1>
+<div id="quiz-container"></div>
+
+<script>
+const quizData = [
+    // 5 Lý thuyết (Ví dụ mẫu)
+    { q: "Nguyên lý số 1 của phương pháp DUYMT là gì?", a: ["Dạy công thức", "Đọc điều công thức che giấu", "Học thuộc lòng", "Làm bài tập nhiều"], correct: 1, explanation: "Người thầy giỏi không dạy cái vỏ công thức mà dạy cách đọc bản chất.", tip: "Tìm từ khóa 'bản chất' hoặc 'che giấu'." },
+    { q: "Harnessing AI nghĩa là gì?", a: ["Prompt", "Context", "Cầm cương AI", "Dùng AI làm bài thay"], correct: 2, explanation: "Harnessing là giai đoạn cầm cương, điều khiển AI đi đúng hướng.", tip: "Harnessing = cầm cương." },
+    // ... Thêm 3 câu lý thuyết khác ...
+    // Bài tập (5 dễ, 5 trung bình, 5 khó) - Ví dụ 1 câu mẫu cho mỗi loại
+    { q: "Tính $\\lim_{x \\to 0} \\frac{\\sin x}{x}$?", a: ["0", "1", "$\infty$", "Không tồn tại"], correct: 1, explanation: "Đây là giới hạn cơ bản.", tip: "Nhớ giới hạn lượng giác cơ bản." },
+    // ... Thêm các câu khác ...
+];
+
+function renderQuiz() {
+    const container = document.getElementById('quiz-container');
+    quizData.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'question';
+        div.innerHTML = `
+            <p><strong>Câu ${index + 1}:</strong> ${item.q}</p>
+            <div class="options" id="options-${index}">
+                ${item.a.map((opt, i) => `<button onclick="checkAnswer(${index}, ${i})">${opt}</button>`).join('')}
+            </div>
+            <div class="explanation" id="exp-${index}">
+                <p>Đáp án đúng: ${item.a[item.correct]}</p>
+                <p>${item.explanation}</p>
+                <p class="tip">💡 Mẹo: ${item.tip}</p>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+}
+
+function checkAnswer(qIdx, optIdx) {
+    const buttons = document.getElementById(`options-${qIdx}`).querySelectorAll('button');
+    const exp = document.getElementById(`exp-${qIdx}`);
+    if (optIdx === quizData[qIdx].correct) {
+        buttons[optIdx].classList.add('correct');
+    } else {
+        buttons[optIdx].classList.add('wrong');
+        buttons[quizData[qIdx].correct].classList.add('correct');
+    }
+    exp.style.display = 'block';
+    buttons.forEach(btn => btn.disabled = true);
+}
+
+renderQuiz();
+</script>
+</body>
+</html>
