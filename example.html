@@ -1,0 +1,102 @@
+# Tạo nội dung 20 câu hỏi trắc nghiệm dựa trên yêu cầu
+quiz_data = [
+    # 5 Lý thuyết
+    {"q": "Nguyên lý số 1 của phương pháp DUYMT là gì?", "a": ["Dạy công thức", "Đọc điều công thức che giấu", "Học thuộc lòng", "Làm bài tập nhiều"], "correct": 1, "explanation": "Người thầy giỏi không dạy cái vỏ công thức mà dạy cách đọc bản chất.", "tip": "Tìm từ khóa 'bản chất' hoặc 'che giấu'."},
+    {"q": "Giai đoạn 'Harnessing' trong việc sử dụng AI nghĩa là gì?", "a": ["Câu lệnh prompt", "Ngữ cảnh context", "Ghì cương, cầm cương AI", "Dùng AI giải toán"], "correct": 2, "explanation": "Harnessing là kỹ năng điều khiển AI đi đúng quỹ đạo, không để nó tự phát.", "tip": "Harnessing = ghì cương con ngựa AI."},
+    {"q": "Trong phương pháp DUYMT, tại sao đạo hàm làm mất thông tin?", "a": ["Vì hàm số quá phức tạp", "Vì hằng số C biến mất khi đạo hàm", "Vì đạo hàm là phép chia", "Vì đạo hàm không có ý nghĩa"], "correct": 1, "explanation": "Đạo hàm một hằng số bằng 0, nên không thể biết hằng số gốc là bao nhiêu.", "tip": "Nhớ rằng đạo hàm triệt tiêu hằng số."},
+    {"q": "Nguyên lý 'Deconstruction' có nghĩa là gì?", "a": ["Nhớ thuộc lòng công thức", "Tái tạo kiến thức từ gốc bằng logic", "Sử dụng máy tính để giải", "Học theo lối mòn"], "correct": 1, "explanation": "Coi như mình không biết công thức và xây dựng lại nó bằng logic.", "tip": "De-construction là tháo rời và xây dựng lại."},
+    {"q": "Nguyên lý nào giải thích khái niệm qua các hệ quy chiếu khác nhau?", "a": ["Ẩn dụ đa tầng", "Kết nối không gian", "Hệ quy chiếu sống", "Triết học hóa"], "correct": 2, "explanation": "Hệ quy chiếu sống giúp giải thích tri thức dựa trên thế giới quan người học.", "tip": "Nhớ ví dụ về trẻ em, doanh nhân và nhà vua."},
+
+    # 5 câu dễ (Bài tập)
+    {"q": "Đạo hàm của $f(x) = x^2$ là gì?", "a": ["$x$", "$2x$", "$x^2$", "$2$"], "correct": 1, "explanation": "Áp dụng công thức $(x^n)' = nx^{n-1}$.", "tip": "Hạ bậc, giảm số mũ."},
+    {"q": "Tính $\\int 1 dx$?", "a": ["$0$", "$1$", "$x + C$", "$x^2 + C$"], "correct": 2, "explanation": "Nguyên hàm của hằng số 1 là biến x cộng hằng số C.", "tip": "Luôn nhớ cộng C."},
+    {"q": "Giá trị của $\\lim_{x \\to 1} (x + 1)$ là?", "a": ["0", "1", "2", "3"], "correct": 2, "explanation": "Thay x = 1 vào biểu thức: 1 + 1 = 2.", "tip": "Thay trực tiếp nếu hàm liên tục."},
+    {"q": "Đạo hàm của hàm số $f(x) = 5$ là?", "a": ["0", "5", "$5x$", "1"], "correct": 0, "explanation": "Đạo hàm của hằng số luôn bằng 0.", "tip": "Hằng số đứng một mình đạo hàm bằng 0."},
+    {"q": "Giá trị của $\\sin(\\pi)$ là?", "a": ["0", "1", "-1", "0.5"], "correct": 0, "explanation": "Trên vòng tròn lượng giác, $\\sin(\\pi) = 0$.", "tip": "Nhớ trục sin nằm ngang hay đứng?"},
+
+    # 5 câu trung bình
+    {"q": "Tính $\\lim_{x \\to 0} \\frac{\\sin x}{x}$?", "a": ["0", "1", "$\\infty$", "Không tồn tại"], "correct": 1, "explanation": "Đây là giới hạn lượng giác cơ bản bằng 1.", "tip": "Nhớ giới hạn cơ bản này."},
+    {"q": "Nguyên hàm của $f(x) = 2x$ là?", "a": ["$x^2 + C$", "$x + C$", "$2x^2 + C$", "$x^2$"], "correct": 0, "explanation": "Nguyên hàm của $x^n$ là $\\frac{x^{n+1}}{n+1}$.", "tip": "Ngược lại với đạo hàm."},
+    {"q": "Đạo hàm của $f(x) = \\sin(x)$ là?", "a": ["$-\\cos(x)$", "$\\cos(x)$", "$\\sin(x)$", "$-\\sin(x)$"], "correct": 1, "explanation": "Đạo hàm của sin là cos.", "tip": "Nhớ vòng tuần hoàn đạo hàm."},
+    {"q": "Tìm $c$ để hàm $f(x) = x + c$ liên tục tại $x = 0$ nếu $f(0) = 5$?", "a": ["0", "1", "5", "-5"], "correct": 2, "explanation": "$0 + c = 5 \\implies c = 5$.", "tip": "Thay giá trị x vào."},
+    {"q": "Giá trị của $\\int_0^1 x dx$ là?", "a": ["0", "0.5", "1", "2"], "correct": 1, "explanation": "$[x^2/2]_0^1 = 1/2 - 0 = 0.5$.", "tip": "Tính nguyên hàm trước rồi thay cận."},
+
+    # 5 câu khó
+    {"q": "Tính $\\lim_{x \\to -2} \\frac{2x^2 - 8}{x + 2}$?", "a": ["-8", "0", "8", "4"], "correct": 0, "explanation": "$\\frac{2(x-2)(x+2)}{x+2} = 2(x-2)$. Thế x = -2 được 2(-4) = -8.", "tip": "Khử dạng vô định bằng cách phân tích nhân tử."},
+    {"q": "Nguyên hàm của $f(x) = e^x$ là?", "a": ["$e^x + C$", "$e^{x+1}$", "$\\frac{e^x}{x}$", "0"], "correct": 0, "explanation": "Đạo hàm và nguyên hàm của $e^x$ đều là chính nó.", "tip": "Hàm đặc biệt nhất trong giải tích."},
+    {"q": "Đạo hàm của $f(x) = \\ln(x)$ là?", "a": ["$x$", "$1/x$", "$\\ln(x)$", "$1$"], "correct": 1, "explanation": "Đạo hàm của $\\ln(x)$ là $1/x$.", "tip": "Nhớ quy tắc cơ bản."},
+    {"q": "Giá trị $\\lim_{x \\to \\infty} \\frac{x^2 + 1}{2x^2 - 1}$ là?", "a": ["0", "0.5", "1", "$\\infty$"], "correct": 1, "explanation": "Chia cả tử và mẫu cho $x^2$, kết quả là $1/2 = 0.5$.", "tip": "Lấy hệ số bậc cao nhất."},
+    {"q": "Nguyên hàm của $f(x) = \\frac{1}{x}$ là?", "a": ["$x^2$", "$\\ln|x| + C$", "$1/x^2$", "$x$"], "correct": 1, "explanation": "Công thức cơ bản của nguyên hàm hàm phân thức.", "tip": "Đừng quên dấu trị tuyệt đối."}
+]
+
+# Tạo HTML
+html_content = f"""<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đề Thi Trắc Nghiệm Tương Tác</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {{ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; background: #f4f7f6; }}
+        .quiz-header {{ text-align: center; color: #1a365d; }}
+        .question {{ background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }}
+        .options button {{ display: block; width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; cursor: pointer; text-align: left; background: #fff; border-radius: 5px; transition: 0.3s; }}
+        .options button:hover {{ background: #edf2f7; }}
+        .correct {{ background-color: #d4edda !important; border-color: #c3e6cb !important; color: #155724; }}
+        .wrong {{ background-color: #f8d7da !important; border-color: #f5c6cb !important; color: #721c24; }}
+        .explanation {{ margin-top: 15px; padding: 15px; background: #e2e8f0; border-radius: 5px; display: none; font-size: 0.95em; }}
+        .tip {{ color: #2b6cb0; font-weight: bold; margin-top: 8px; font-style: italic; }}
+    </style>
+</head>
+<body>
+    <div class="quiz-header"><h1>ĐỀ THI TRẮC NGHIỆM TƯƠNG TÁC</h1></div>
+    <div id="quiz-container"></div>
+
+<script>
+const quizData = {str(quiz_data).replace("'", '"')};
+
+function renderQuiz() {{
+    const container = document.getElementById('quiz-container');
+    quizData.forEach((item, index) => {{
+        const div = document.createElement('div');
+        div.className = 'question';
+        div.innerHTML = `
+            <p><strong>Câu ${{index + 1}}:</strong> ${{item.q}}</p>
+            <div class="options" id="options-${{index}}">
+                ${{item.a.map((opt, i) => `<button onclick="checkAnswer(${{index}}, ${{i}})">${{opt}}</button>`).join('')}}
+            </div>
+            <div class="explanation" id="exp-${{index}}">
+                <p><strong>Đáp án đúng:</strong> ${{item.a[item.correct]}}</p>
+                <p>${{item.explanation}}</p>
+                <p class="tip">💡 Mẹo: ${{item.tip}}</p>
+            </div>
+        `;
+        container.appendChild(div);
+    }});
+    MathJax.typeset();
+}}
+
+function checkAnswer(qIdx, optIdx) {{
+    const buttons = document.getElementById(`options-${{qIdx}}`).querySelectorAll('button');
+    const exp = document.getElementById(`exp-${{qIdx}}`);
+    if (optIdx === quizData[qIdx].correct) {{
+        buttons[optIdx].classList.add('correct');
+    }} else {{
+        buttons[optIdx].classList.add('wrong');
+        buttons[quizData[qIdx].correct].classList.add('correct');
+    }}
+    exp.style.display = 'block';
+    buttons.forEach(btn => btn.disabled = true);
+}}
+
+renderQuiz();
+</script>
+</body>
+</html>
+"""
+
+with open("de_thi_trac_nghiem_20_cau.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("HTML file created successfully.")
